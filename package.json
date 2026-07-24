@@ -1,0 +1,16 @@
+{
+  "name": "scorpio-pages",
+  "version": "1.0.0",
+  "description": "Scorpio Pages — 个人综合知识库：博士Paper文库 · 游戏攻略库 · 音乐乐评集",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "vitepress": "^1.3.4",
+    "markdown-it-mathjax3": "^4.3.2",
+    "vitepress-plugin-mermaid": "^2.0.17"
+  }
+}
