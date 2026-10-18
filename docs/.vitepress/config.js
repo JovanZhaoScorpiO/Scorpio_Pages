@@ -11,8 +11,13 @@ export default defineConfig({
     cleanUrls: true,
 
     head: [
-      ['meta', { name: 'theme-color', content: '#1a365d' }],
-      ['link', { rel: 'icon', href: '/favicon.svg' }],
+      ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content' }],
+      ['meta', { name: 'theme-color', media: '(prefers-color-scheme: light)', content: '#ffffff' }],
+      ['meta', { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#090d16' }],
+      ['meta', { name: 'color-scheme', content: 'light dark' }],
+      ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
+      ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' }],
+      ['link', { rel: 'icon', href: '/Scorpio_Pages/favicon.svg' }],
       ['meta', { property: 'og:title', content: 'Scorpio Pages' }],
       ['meta', { property: 'og:description', content: '个人综合内容档案馆 — 博士论文笔记 · 游戏攻略 · 音乐乐评' }],
     ],

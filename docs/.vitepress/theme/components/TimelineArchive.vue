@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue'
+import { withBase } from 'vitepress'
 import { data as posts } from '../../posts.data'
 
 const timeline = computed(() => {
@@ -7,7 +8,7 @@ const timeline = computed(() => {
     .filter(p => p.date)
     .map(p => ({
       ...p,
-      dateStr: String(p.date),
+      dateStr: String(p.date).trim(),
     }))
     .sort((a, b) => b.dateStr.localeCompare(a.dateStr))
 
@@ -31,7 +32,6 @@ const timeline = computed(() => {
     groups[year][ym].push({ ...entry, displayDay: day, displayMonth: month })
   }
 
-  // Sort years desc, months desc
   const result = []
   const years = Object.keys(groups).sort((a, b) => Number(b) - Number(a))
   for (const year of years) {
@@ -48,10 +48,9 @@ const timeline = computed(() => {
   return result
 })
 
-function formatDay(d, m) {
-  if (d) return `${d}日`
-  if (m) return ''
-  return '今年'
+function formatDay(d) {
+  if (d) return `${d} 日`
+  return '—'
 }
 
 function sectionBadge(section) {
@@ -61,33 +60,55 @@ function sectionBadge(section) {
 </script>
 
 <template>
-  <div class="timeline-archive">
-    <div v-if="timeline.length === 0" style="color: var(--vp-c-text-3); padding: 2rem; text-align: center;">
-      暂无时间线数据
+  <div class="timeline-archive-container">
+    <div v-if="timeline.length === 0" class="empty-timeline">
+      <span class="empty-icon">📅</span>
+      <p class="empty-title">暂无时间线数据</p>
     </div>
-    <template v-else>
-      <div v-for="yr in timeline" :key="yr.year">
-        <h2 class="timeline-year">{{ yr.year }}</h2>
-        <div v-for="mo in yr.months" :key="mo.monthLabel || yr.year">
-          <h3 v-if="mo.monthLabel" class="timeline-month">
-            {{ mo.monthLabel.slice(0, 4) }}年{{ mo.monthLabel.slice(5, 7) }}月
-          </h3>
-          <div
-            v-for="entry in mo.entries"
-            :key="entry.url"
-            class="timeline-entry"
-          >
-            <span class="entry-day">{{ entry.displayDay ? `${entry.displayDay}日` : '' }}</span>
-            <span
-              class="update-section-badge"
-              :class="entry.section"
+    <div v-else class="timeline-tree">
+      <div v-for="yr in timeline" :key="yr.year" class="timeline-year-group">
+        <div class="timeline-year-header">
+          <span class="year-marker"></span>
+          <h2 class="timeline-year-title">{{ yr.year }}</h2>
+        </div>
+
+        <div
+          v-for="mo in yr.months"
+          :key="mo.monthLabel || yr.year"
+          class="timeline-month-group"
+        >
+          <div v-if="mo.monthLabel" class="timeline-month-header">
+            <span class="month-marker"></span>
+            <h3 class="timeline-month-title">
+              {{ mo.monthLabel.slice(0, 4) }} 年 {{ mo.monthLabel.slice(5, 7) }} 月
+            </h3>
+          </div>
+
+          <div class="timeline-entries-list">
+            <div
+              v-for="entry in mo.entries"
+              :key="entry.url"
+              class="timeline-entry"
             >
-              {{ sectionBadge(entry.section) }}
-            </span>
-            <a :href="entry.url" style="font-weight: 500; flex: 1;">{{ entry.title }}</a>
+              <div class="timeline-node"></div>
+              <time class="entry-day">{{ formatDay(entry.displayDay) }}</time>
+              <span
+                class="update-section-badge"
+                :class="entry.section"
+              >
+                {{ sectionBadge(entry.section) }}
+              </span>
+              <a
+                :href="withBase(entry.url)"
+                class="timeline-entry-link"
+                :title="entry.title"
+              >
+                {{ entry.title }}
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </template>
+    </div>
   </div>
 </template>
