@@ -113,9 +113,9 @@ const fsSource = `
     float mask = smoothstep(1.9, 0.15, dist);
 
     vec3 col = u_color_bg;
-    col = mix(col, u_color_primary, clamp(f * f * 2.1, 0.0, 1.0) * mask);
-    col = mix(col, u_color_secondary, clamp(length(q) * 0.7, 0.0, 1.0) * mask);
-    col = mix(col, u_color_highlight, clamp(f * r.x * 1.6, 0.0, 1.0) * mask);
+    col = mix(col, u_color_secondary, clamp(length(q) * 0.85, 0.0, 1.0) * mask);
+    col = mix(col, u_color_primary, clamp(f * f * 2.8, 0.0, 1.0) * mask);
+    col = mix(col, u_color_highlight, clamp(f * r.x * 0.9, 0.0, 1.0) * mask);
 
     gl_FragColor = vec4(col, 1.0);
   }
@@ -199,17 +199,17 @@ function updateUniformColors() {
   const uHighlight = gl.getUniformLocation(program, 'u_color_highlight')
 
   if (isDark) {
-    // Deep navy #071526, dimmer blue clouds, cyan highlight
+    // Deep navy #071526, muted pink clouds, soft rose highlight
     gl.uniform3f(uBg, 0.027, 0.082, 0.149)
-    gl.uniform3f(uPrimary, 0.08, 0.25, 0.44)
-    gl.uniform3f(uSecondary, 0.12, 0.34, 0.58)
-    gl.uniform3f(uHighlight, 0.26, 0.75, 0.97)
+    gl.uniform3f(uPrimary, 0.62, 0.31, 0.44)
+    gl.uniform3f(uSecondary, 0.32, 0.15, 0.25)
+    gl.uniform3f(uHighlight, 0.90, 0.65, 0.75)
   } else {
-    // Pale sky #f4fbff / #e6f6fe, soft blue #42c0f8, pale #d4effd, white highlight
+    // Pale sky #f4fbff / #e6f6fe, light pink core #ffb3cc, blush edges #ffe0ea, soft highlight
     gl.uniform3f(uBg, 0.957, 0.984, 1.0)
-    gl.uniform3f(uPrimary, 0.259, 0.753, 0.973)
-    gl.uniform3f(uSecondary, 0.831, 0.937, 0.992)
-    gl.uniform3f(uHighlight, 1.0, 1.0, 1.0)
+    gl.uniform3f(uPrimary, 1.0, 0.702, 0.800)
+    gl.uniform3f(uSecondary, 1.0, 0.878, 0.918)
+    gl.uniform3f(uHighlight, 1.0, 0.93, 0.95)
   }
 }
 
@@ -845,12 +845,19 @@ onBeforeUnmount(() => {
   z-index: 1;
   pointer-events: none;
   background:
-    radial-gradient(circle at 45% 40%, rgba(66, 192, 248, 0.32), transparent 55%),
-    radial-gradient(circle at 65% 55%, rgba(212, 239, 253, 0.5), transparent 60%),
-    radial-gradient(ellipse at 50% 50%, rgba(15, 134, 196, 0.18), transparent 75%);
+    radial-gradient(circle at 45% 40%, rgba(255, 179, 204, 0.55), transparent 55%),
+    radial-gradient(circle at 65% 55%, rgba(255, 224, 234, 0.7), transparent 60%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 154, 184, 0.32), transparent 75%);
   -webkit-mask-image: radial-gradient(ellipse 85% 80% at 50% 50%, #000 45%, transparent 95%);
   mask-image: radial-gradient(ellipse 85% 80% at 50% 50%, #000 45%, transparent 95%);
   animation: fallbackPulse 14s ease-in-out infinite alternate;
+}
+
+.dark .nebula-fallback {
+  background:
+    radial-gradient(circle at 45% 40%, rgba(196, 109, 143, 0.45), transparent 55%),
+    radial-gradient(circle at 65% 55%, rgba(120, 50, 85, 0.4), transparent 60%),
+    radial-gradient(ellipse at 50% 50%, rgba(235, 182, 194, 0.25), transparent 75%);
 }
 
 @keyframes fallbackPulse {
