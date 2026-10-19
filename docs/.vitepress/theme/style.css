@@ -1481,3 +1481,173 @@ p, li {
     font-size: 0.75rem;
   }
 }
+
+/* ===== Nebula homepage redesign: light sky palette overrides =====
+   (appended; overrides previous base palette) */
+:root {
+  /* 全局 */
+
+  /* 默认（Home / Fallback: Pale sky blues #e6f6fe / #d4effd / #f4fbff, accent #42c0f8, deep #0f86c4, navy #0b2340） */
+  --vp-c-brand-1: #0f86c4;
+  --vp-c-brand-2: #42c0f8;
+  --vp-c-brand-3: #0b6fa5;
+  --vp-c-brand-soft: rgba(66, 192, 248, 0.14);
+
+  --vp-c-bg: #f4fbff;
+  --vp-c-bg-alt: #e6f6fe;
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-bg-soft: #d4effd;
+
+  --vp-c-text-1: #0b2340;
+  --vp-c-text-2: #1e4266;
+  --vp-c-text-3: #587999;
+
+  --vp-c-border: #cbe6f7;
+  --vp-c-divider: #daf0fd;
+
+  --section-card-radius: 12px;
+  --section-card-shadow: 0 4px 16px rgba(11, 35, 64, 0.05);
+  --section-card-padding: 1.5rem;
+}
+.dark {
+  --vp-c-brand-1: #42c0f8;
+  --vp-c-brand-2: #70d2fa;
+  --vp-c-brand-3: #0f86c4;
+  --vp-c-brand-soft: rgba(66, 192, 248, 0.18);
+
+  --vp-c-bg: #071526;
+  --vp-c-bg-alt: #0b1d33;
+  --vp-c-bg-elv: #0f243e;
+  --vp-c-bg-soft: #153255;
+
+  --vp-c-text-1: #e6f4fc;
+  --vp-c-text-2: #9bc0db;
+  --vp-c-text-3: #5f83a3;
+
+  --vp-c-border: #163659;
+  --vp-c-divider: #122c4a;
+
+  --section-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.VPHomeHero,
+.VPHomeFeatures {
+  display: none !important;
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   Scorpio Nebula v2 首页补充样式
+   ============================================================ */
+.scorpio-nebula-home {
+  overflow-x: clip;
+}
+
+.home-secondary-wrap {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 6rem;
+}
+
+.home-secondary-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.home-section-block {
+  background: var(--vp-c-bg-elv);
+  border: 1px solid var(--vp-c-border);
+  border-radius: 16px;
+  padding: 2.25rem 2rem;
+  box-shadow: 0 4px 24px rgba(11, 35, 64, 0.04);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.home-section-block:hover {
+  border-color: var(--vp-c-brand-2);
+  box-shadow: 0 8px 32px rgba(66, 192, 248, 0.12);
+}
+
+.home-section-header {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.5rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+  padding-bottom: 1.15rem;
+}
+
+.home-section-badge {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  border: 1px solid rgba(66, 192, 248, 0.2);
+}
+
+.home-section-heading {
+  font-family: 'Iowan Old Style', 'Palatino Linotype', 'Palatino', Georgia, 'Noto Serif SC', serif;
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.home-section-heading em {
+  font-style: italic;
+  color: var(--vp-c-brand-1);
+  font-family: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+}
+
+.home-section-link {
+  margin-left: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.82rem;
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 500;
+}
+
+.home-section-link:hover {
+  color: var(--vp-c-brand-2);
+  transform: translateX(3px);
+  text-decoration: none;
+}
+
+.home-quiet-footer {
+  text-align: center;
+  margin-top: 1rem;
+  padding: 2.5rem 1.5rem;
+  border-radius: 16px;
+  background: var(--vp-c-bg-alt);
+  border: 1px solid var(--vp-c-border);
+  box-shadow: 0 4px 20px rgba(66, 192, 248, 0.05);
+}
+
+.home-quiet-footer p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--vp-c-text-2);
+  letter-spacing: 0.06em;
+}
+
+.home-quiet-footer .sub {
+  margin-top: 0.5rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.78rem;
+  color: var(--vp-c-text-3);
+  letter-spacing: 0.1em;
+}
+

@@ -8,11 +8,13 @@ import TagCloud from './components/TagCloud.vue'
 import TimelineArchive from './components/TimelineArchive.vue'
 import RelatedContent from './components/RelatedContent.vue'
 import FontSizeControl from './components/FontSizeControl.vue'
+import HomeNebula from './components/HomeNebula.vue'
 
 export default {
   extends: DefaultTheme,
 
   enhanceApp({ app }) {
+    app.component('HomeNebula', HomeNebula)
     app.component('LatestUpdates', LatestUpdates)
     app.component('TagCloud', TagCloud)
     app.component('TimelineArchive', TimelineArchive)
